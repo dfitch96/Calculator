@@ -14,10 +14,11 @@ body{
 .calculator{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 600px;
     width: 450px;
+    padding: 20px;
     border: solid white;
     background-color: grey;
     border-radius: 5%;
@@ -25,10 +26,30 @@ body{
 
 
 .display{
-    background-color: lightgrey;
-    margin: 20px;
+    background-color:black;
     height: 100px;
     width: 400px;
-    border: solid black;
+    color: white;
 }
 
+
+.rows{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 400px;
+    
+    
+}
+
+.btn{
+    height: 75px;
+    width: 75px;
+    margin: 5px;
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    font-size: 50px;
+    font-weight: 900;
+}

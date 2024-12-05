@@ -23,12 +23,23 @@ main.addEventListener("click", (e) => {
         populateDisplay();
     } else if(e.target.classList.contains("clear")){
         resetDisplay();
+        resetExpression();
     } else if(e.target.classList.contains("operator")){
         setOperator(e.target.textContent);
+    } else if(e.target.classList.contains("equals")){
+        setResult();
+        populateDisplay();
     }
 
-    
 })
+
+
+function setResult(){
+    
+    op1 = operate(operator, parseInt(op1), parseInt(op2));
+    op2 = ''
+    operator = '';
+}
 
 function setOperator(op){
     console.log("method: setOperator, op: " + op);
@@ -48,6 +59,9 @@ function storeDigit(digit){
 function resetDisplay(){
     console.log("method: resetDisplay");
     display.textContent = '0';
+}
+
+function resetExpression(){
     op1 = '';
     op2 = '';
     operator = '';
@@ -78,11 +92,7 @@ function operate(operator, op1, op2){
         case POW:
             return power(op1, op2);
     }
-
-
 }
-
-
 
 function add (a=0, b=0) {
     return a + b;

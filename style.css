@@ -23,7 +23,7 @@ main{
     
 }
 
-section, .display{
+section, #display{
     height: 100px;
     width: 300px;
 }
@@ -35,7 +35,7 @@ section{
     gap: 5px;
 }
 
-.display{
+#display{
     background-color:black;
     color: white;
     border-radius: 5px;
@@ -60,7 +60,7 @@ section{
     background-color: rgb(168, 163, 163);
 }
 
-.operand{
+.digit{
     background-color: rgb(255, 255, 255);
 }
 

@@ -7,6 +7,19 @@ const DIV = '/';
 const POW = '^';
 const FACT = '!';
 
+const main = document.querySelector("main");
+main.addEventListener("click", (e) => {
+    
+    if(e.target.classList.contains("digit")){
+        populateDisplay();
+    }
+    
+})
+
+function populateDisplay(){
+    console.log("populating display");
+}
+
 
 function operate(operator, op1, op2){
 

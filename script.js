@@ -7,19 +7,62 @@ const DIV = '/';
 const POW = '^';
 const FACT = '!';
 
+let op1 = "";
+let op2 = "";
+let operator = "";
+
+
+const display = document.querySelector("#display");
+
+
 const main = document.querySelector("main");
 main.addEventListener("click", (e) => {
     
     if(e.target.classList.contains("digit")){
+        storeDigit(e.target.textContent);
         populateDisplay();
+    } else if(e.target.classList.contains("clear")){
+        resetDisplay();
+    } else if(e.target.classList.contains("operator")){
+        setOperator(e.target.textContent);
     }
+
     
 })
 
-function populateDisplay(){
-    console.log("populating display");
+function setOperator(op){
+    console.log("method: setOperator, op: " + op);
+    operator = op;
 }
 
+function storeDigit(digit){
+    console.log("method: storeDigit, digit: " + digit);
+    if(operator.length == 0){
+        op1 += digit;
+    } else{
+        op2 += digit;
+    }
+    
+}
+
+function resetDisplay(){
+    console.log("method: resetDisplay");
+    display.textContent = '0';
+    op1 = '';
+    op2 = '';
+    operator = '';
+}
+
+function populateDisplay(){
+    console.log("method: populateDisplay");
+    
+    if(operator.length == 0){
+        display.textContent = op1;
+    } else{
+        display.textContent = op2;
+    }
+
+}
 
 function operate(operator, op1, op2){
 

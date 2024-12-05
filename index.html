@@ -6,11 +6,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="resetDisplay()">
     <main>
-        <div id="display">
-            0.6666667
-        </div>
+        <div id="display"></div>
         <section>
             <button class="btn digit">7</button>
             <button class="btn digit">8</button>
@@ -31,7 +29,7 @@
         </section>
         <section>
             <button class="btn digit">0</button>
-            <button class="btn decimal">.</button>
+            <button class="btn clear">C</button>
             <button class="btn equals">=</button>
             <button class="btn operator">+</button>
         </section>

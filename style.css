@@ -36,6 +36,8 @@ section{
 }
 
 #display{
+    display: flex;
+    flex-direction: column;
     background-color:black;
     color: white;
     border-radius: 5px;
@@ -55,7 +57,11 @@ section{
     cursor: pointer;
 }
 
-.decimal,
+.btn:hover{
+    background-color: antiquewhite;
+}
+
+.clear,
 .operator{
     background-color: rgb(168, 163, 163);
 }

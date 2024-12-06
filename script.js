@@ -7,26 +7,27 @@ const DIV = '/';
 const POW = '^';
 const FACT = '!';
 
+// EXPRESSION
 let op1 = "";
 let op2 = "";
 let operator = "";
 
 
 const display = document.querySelector("#display");
-
-
 const main = document.querySelector("main");
+
 main.addEventListener("click", (e) => {
     
-    if(e.target.classList.contains("digit")){
+    let classList = e.target.classList;
+    if(classList.contains("digit")){
         storeDigit(e.target.textContent);
         populateDisplay();
-    } else if(e.target.classList.contains("clear")){
+    } else if(classList.contains("clear")){
         resetDisplay();
         resetExpression();
-    } else if(e.target.classList.contains("operator")){
+    } else if(classList.contains("operator")){
         setOperator(e.target.textContent);
-    } else if(e.target.classList.contains("equals")){
+    } else if(classList.contains("equals")){
         setResult();
         populateDisplay();
     }
@@ -70,15 +71,16 @@ function resetExpression(){
 function populateDisplay(){
     console.log("method: populateDisplay");
     
-    if(operator.length == 0){
-        display.textContent = op1;
-    } else{
-        display.textContent = op2;
-    }
+    display.textContent = operator.length == 0 ? op1 : op2;
 
 }
 
 function operate(operator, op1, op2){
+    if(operator.length === 0){
+        return op1;
+    } else if (op2 && !op1){
+        op1 = 0;
+    }
 
     switch(operator){
         case ADD:

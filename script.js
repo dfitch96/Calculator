@@ -49,7 +49,7 @@ function setOperator(op){
 
 function storeDigit(digit){
     console.log("method: storeDigit, digit: " + digit);
-    if(operator.length == 0){
+    if(!operator){
         op1 += digit;
     } else{
         op2 += digit;
@@ -71,12 +71,12 @@ function resetExpression(){
 function populateDisplay(){
     console.log("method: populateDisplay");
     
-    display.textContent = operator.length == 0 ? op1 : op2;
+    display.textContent = !operator ? op1 : op2;
 
 }
 
 function operate(operator, op1, op2){
-    if(operator.length === 0){
+    if(!operator){
         return op1;
     } else if (op2 && !op1){
         op1 = 0;

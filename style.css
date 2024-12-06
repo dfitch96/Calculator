@@ -37,13 +37,13 @@ section{
 
 #display{
     display: flex;
-    flex-direction: column;
+    justify-content: right;
+    align-items: end;
     background-color:black;
     color: white;
     border-radius: 5px;
     padding: 10px;
-    font-size: 1.5rem;
-    text-align: right;
+    font-size: 3rem;
 }
 
 .btn{

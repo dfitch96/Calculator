@@ -36,6 +36,7 @@ main.addEventListener("click", (e) => {
 
 
 function setResult(){
+    console.log("method: setResult");
     
     op1 = operate(operator, parseInt(op1), parseInt(op2));
     op2 = ''
@@ -54,6 +55,7 @@ function storeDigit(digit){
     } else{
         op2 += digit;
     }
+
     
 }
 
@@ -63,6 +65,7 @@ function resetDisplay(){
 }
 
 function resetExpression(){
+    console.log("method: resetExpression");
     op1 = '';
     op2 = '';
     operator = '';
@@ -71,16 +74,30 @@ function resetExpression(){
 function populateDisplay(){
     console.log("method: populateDisplay");
     
-    display.textContent = !operator ? op1 : op2;
+    let result = !operator ? op1 : op2;
+    if(result.length >= 2 && result.charAt(0) == '0'){
+        
+        result = result.slice(1);
+    }
+
+    display.textContent = result;
 
 }
 
-function operate(operator, op1, op2){
+function validateExpression(){
+    console.log("method: validateExpression");
+
     if(!operator){
         return op1;
     } else if (op2 && !op1){
         op1 = 0;
     }
+}
+
+function operate(operator, op1, op2){
+    console.log("method: operate");
+
+    validateExpression();
 
     switch(operator){
         case ADD:

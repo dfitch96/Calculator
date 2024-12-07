@@ -6,6 +6,7 @@ const MUL = '*';
 const DIV = '/';
 const POW = '^';
 const FACT = '!';
+const DECIMAL_PLACES = 100000000000
 
 // EXPRESSION
 let op1 = "";
@@ -28,19 +29,21 @@ main.addEventListener("click", (e) => {
     } else if(classList.contains("operator")){
         setOperator(e.target.textContent);
     } else if(classList.contains("equals")){
-        
-        // if setResult was successful, populate the display
-        // otherwise reset the expression and display an ERROR
-        if(setResult()){
-            populateDisplay();
-        } else{
-            resetExpression();
-            setDisplay('ERROR');
-        }
-        
+        evaluate();
     }
 
 })
+
+function evaluate(){
+    // if setResult was successful, populate the display
+    // otherwise reset the expression and display an ERROR
+    if(setResult()){
+        populateDisplay();
+    } else{
+        resetExpression();
+        setDisplay('ERROR');
+    }
+}
 
 
 function setResult(){
@@ -50,7 +53,13 @@ function setResult(){
         return false;
     } 
     
-    op1 = operate(operator, parseInt(op1), parseInt(op2));
+    let result = operate(operator, parseInt(op1), parseInt(op2));
+
+    if(result === -1){
+        return false;
+    }
+
+    op1 = Math.round(result * DECIMAL_PLACES) / DECIMAL_PLACES;
     op2 = ''
     operator = '';
 
@@ -59,7 +68,13 @@ function setResult(){
 
 function setOperator(op){
     console.log("method: setOperator, op: " + op);
-    operator = op;
+    if(!operator){
+        operator = op;
+    } else{
+        evaluate();
+        operator = op;
+    }
+    
 }
 
 function storeDigit(digit){
@@ -70,7 +85,6 @@ function storeDigit(digit){
         op2 += digit;
     }
 
-    
 }
 
 
@@ -132,7 +146,7 @@ function multiply(a=0, b=0) {
 
 function divide(a=0, b=1){
     if(b === 0){
-        return NaN;
+        return -1;
     }
 
     return a / b;

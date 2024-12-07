@@ -6,7 +6,7 @@ const MUL = '*';
 const DIV = '/';
 const POW = '^';
 const FACT = '!';
-const DECIMAL_PLACES = 100000000000
+const DECIMAL_PLACES = 1000000000
 
 // EXPRESSION
 let op1 = "";

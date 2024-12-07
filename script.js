@@ -28,8 +28,16 @@ main.addEventListener("click", (e) => {
     } else if(classList.contains("operator")){
         setOperator(e.target.textContent);
     } else if(classList.contains("equals")){
-        setResult();
-        populateDisplay();
+        
+        // if setResult was successful, populate the display
+        // otherwise reset the expression and display an ERROR
+        if(setResult()){
+            populateDisplay();
+        } else{
+            resetExpression();
+            setDisplay('ERROR');
+        }
+        
     }
 
 })
@@ -37,10 +45,16 @@ main.addEventListener("click", (e) => {
 
 function setResult(){
     console.log("method: setResult");
+
+    if (!op1 || !op2 || !operator){
+        return false;
+    } 
     
     op1 = operate(operator, parseInt(op1), parseInt(op2));
     op2 = ''
     operator = '';
+
+    return true;
 }
 
 function setOperator(op){
@@ -59,6 +73,11 @@ function storeDigit(digit){
     
 }
 
+
+function setDisplay(text){
+    display.textContent = text;
+}
+
 function resetDisplay(){
     console.log("method: resetDisplay");
     display.textContent = '0';
@@ -73,43 +92,28 @@ function resetExpression(){
 
 function populateDisplay(){
     console.log("method: populateDisplay");
-    
-    let result = !operator ? op1 : op2;
-    if(result.length >= 2 && result.charAt(0) == '0'){
-        
-        result = result.slice(1);
-    }
-
-    display.textContent = result;
-
-}
-
-function validateExpression(){
-    console.log("method: validateExpression");
-
     if(!operator){
-        return op1;
-    } else if (op2 && !op1){
-        op1 = 0;
+        display.textContent = op1;
+    } else{
+        display.textContent = op2;
     }
 }
 
-function operate(operator, op1, op2){
+
+function operate(operator, op_1, op_2){
     console.log("method: operate");
-
-    validateExpression();
-
+   
     switch(operator){
         case ADD:
-            return add(op1, op2);
+            return add(op_1, op_2);
         case SUB:
-            return subtract(op1, op2);
+            return subtract(op_1, op_2);
         case MUL:
-            return multiply(op1, op2);
+            return multiply(op_1, op_2);
         case DIV:
-            return divide(op1, op2);
+            return divide(op_1, op_2);
         case POW:
-            return power(op1, op2);
+            return power(op_1, op_2);
     }
 }
 
